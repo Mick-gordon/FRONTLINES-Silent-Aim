@@ -67,7 +67,7 @@ do
         if Name == BulletCore and HitBox and SilentAim.Enabled and Equipment and LodoutState and Equipment[tonumber(LodoutState.loadout_id)] then -- Check If Set(Network) Is Sending Bullets And Also Checks If We Have Our Weapon.
             
             local Time, Four, Position, Velocity = ...; -- Opend Up The Arguments To Make More Sence.
-            warn("working")
+            
             local MuzzleVelocity = Equipment[tonumber(LodoutState.loadout_id)].fire_params.muzzle_velocity; -- Will Need It To Create The Velocity.
             Velocity = (HitBox.Position - Position).Unit * MuzzleVelocity; -- LookVector * MuzzleVelocity = Velocity.
             
