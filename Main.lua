@@ -15,10 +15,10 @@ local RunService = game:GetService("RunService");
 local UserInputService = game:GetService("UserInputService");
 
 -- // Game Variables
-local Set = getrenv()._G.exe_set;
-local BulletCore = getrenv()._G.exe_set_t.FPV_SOL_BULLET_SPAWN;
-local Equipment = getrenv()._G.globals.gbl_sol_equipments;
-local LodoutState = getrenv()._G.globals.loadout_state;
+local Set = getrenv()._G.exe_set; -- Game Is Basicaly Run On _G Kinda Cool.
+local BulletCore = getrenv()._G.exe_set_t.FPV_SOL_BULLET_SPAWN; -- This Is A Number.
+local Equipment = getrenv()._G.globals.gbl_sol_equipments; -- Used To Get Muzzle Velocity.
+local LodoutState = getrenv()._G.globals.loadout_state; -- Same Thing
 -- 
 local RootParts = getrenv()._G.globals.sol_root_parts;
 local IsAlive = getrenv()._G.globals.soldiers_alive;
