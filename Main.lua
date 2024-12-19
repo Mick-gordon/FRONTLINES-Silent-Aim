@@ -15,7 +15,7 @@ local RunService = game:GetService("RunService");
 local UserInputService = game:GetService("UserInputService");
 
 -- // Game Variables
-local Set = getrenv()._G.exe_set; -- Game Is Basicaly Run On _G Kinda Cool.
+-- Game Is Basicaly Run On _G Kinda Cool.
 local BulletCore = getrenv()._G.exe_set_t.FPV_SOL_BULLET_SPAWN; -- This Is A Number.
 local Equipment = getrenv()._G.globals.gbl_sol_equipments; -- Used To Get Muzzle Velocity.
 local LodoutState = getrenv()._G.globals.loadout_state; -- Same Thing
@@ -60,14 +60,14 @@ end;
 -- // Hooks
 do
     
-    local OldSet = Set; 
-    Set = newcclosure(function(Name, ...) -- I Am Not Using HookFunction As Shitty Free Executors(Argon) Crys About To Many Up Values.
+    local OldSet = getrenv()._G.exe_set; 
+    getrenv()._G.exe_set = newcclosure(function(Name, ...) -- I Am Not Using HookFunction As Shitty Free Executors(Argon) Crys About To Many Up Values.
         local HitBox = Functions:GetClosestPlayer();
-        
+       
         if Name == BulletCore and HitBox and SilentAim.Enabled and Equipment and LodoutState and Equipment[tonumber(LodoutState.loadout_id)] then -- Check If Set(Network) Is Sending Bullets And Also Checks If We Have Our Weapon.
             
             local Time, Four, Position, Velocity = ...; -- Opend Up The Arguments To Make More Sence.
-            
+            warn("work")
             local MuzzleVelocity = Equipment[tonumber(LodoutState.loadout_id)].fire_params.muzzle_velocity; -- Will Need It To Create The Velocity.
             Velocity = (HitBox.Position - Position).Unit * MuzzleVelocity; -- LookVector * MuzzleVelocity = Velocity.
             
