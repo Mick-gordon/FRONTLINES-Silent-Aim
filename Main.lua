@@ -60,8 +60,7 @@ end;
 -- // Hooks
 do
     
-    local OldSet = getrenv()._G.exe_set; 
-    getrenv()._G.exe_set = newcclosure(function(Name, ...) -- I Am Not Using HookFunction As Shitty Free Executors(Argon) Crys About To Many Up Values.
+    local OldSet; OldSet = hookfunction(getrenv()._G.exe_set, newcclosure(function(Name, ...) 
         local HitBox = Functions:GetClosestPlayer();
        
         if Name == BulletCore and HitBox and SilentAim.Enabled and Equipment and LodoutState and Equipment[tonumber(LodoutState.loadout_id)] then -- Check If Set(Network) Is Sending Bullets And Also Checks If We Have Our Weapon.
@@ -76,7 +75,7 @@ do
         
         
         return OldSet(Name, ...); -- Returns Un-Modified Arguments.
-    end);
+    end));
     
 end;
 
