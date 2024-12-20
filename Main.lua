@@ -59,18 +59,20 @@ end;
 
 -- // Hooks
 do
-    	xpcall(function()
+    xpcall(function()
 	    local OldSet; OldSet = hookfunction(getrenv()._G.exe_set, newcclosure(function(Name, ...) 
-	        local HitBox = Functions:GetClosestPlayer();
 	       
-	        if Name == BulletCore and HitBox and SilentAim.Enabled and Equipment and LodoutState and Equipment[tonumber(LodoutState.loadout_id)] then -- Check If Set(Network) Is Sending Bullets And Also Checks If We Have Our Weapon.
+	        if Name == BulletCore and SilentAim.Enabled and Equipment and LodoutState and Equipment[tonumber(LodoutState.loadout_id)] then -- Check If Set(Network) Is Sending Bullets And Also Checks If We Have Our Weapon.
+	            local HitBox = Functions:GetClosestPlayer();
 	            
-	            local Time, Four, Position, Velocity = ...; -- Opend Up The Arguments To Make More Sence.
-	            
-	            local MuzzleVelocity = Equipment[tonumber(LodoutState.loadout_id)].fire_params.muzzle_velocity; -- Will Need It To Create The Velocity.
-	            Velocity = (HitBox.Position - Position).Unit * MuzzleVelocity; -- LookVector * MuzzleVelocity = Velocity.
-	            
-	            return OldSet(Name, Time, Four, Position, Velocity); -- Return The Modified Arguments.
+	            if HitBox then
+	                local Time, Four, Position, Velocity = ...; -- Opend Up The Arguments To Make More Sence.
+    	            
+    	            local MuzzleVelocity = Equipment[tonumber(LodoutState.loadout_id)].fire_params.muzzle_velocity; -- Will Need It To Create The Velocity.
+    	            Velocity = (HitBox.Position - Position).Unit * MuzzleVelocity; -- LookVector * MuzzleVelocity = Velocity.
+    	            
+    	            return OldSet(Name, Time, Four, Position, Velocity); -- Return The Modified Arguments.
+	            end;
 	        end;
 	        
 	        
